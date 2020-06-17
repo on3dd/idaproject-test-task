@@ -1,0 +1,26 @@
+@import './colors.scss';
+
+@mixin button {
+  padding: 3px 16px;
+  color: $gray;
+  font-size: 14px;
+  line-height: 24px;
+  border: 1px solid $cloud-darken;
+  border-radius: 2px;
+  background-color: #ffffff;
+  transition: all 0.2s ease-out;
+  cursor: pointer;
+
+  &:hover {
+    background-color: darken(#ffffff, 5%);
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+
+    &:hover {
+      background-color: inherit;
+    }
+  }
+}
