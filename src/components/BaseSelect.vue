@@ -96,7 +96,7 @@
 	.select {
 		position: relative;
 		// width: inherit;
-		width: 68px;
+		width: 100%;
 		// height: inherit;
 		cursor: pointer;
 	}
@@ -125,7 +125,7 @@
 	.select__current__icon {
 		position: absolute;
 		top: 50%;
-		right: 16px;
+		right: 13px;
 		width: 8px;
 		height: 5px;
 		transform: translateY(-50%);

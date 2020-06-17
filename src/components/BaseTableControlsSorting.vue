@@ -23,6 +23,8 @@
 </script>
 
 <style scoped lang="scss">
+	@import '@/scss/_unselectable.scss';
+
 	.sorting-options {
 		display: flex;
 		margin: 20px 0;
@@ -39,6 +41,8 @@
 	}
 
 	.sorting-options__item {
+    @include unselectable;
+
 		list-style: none;
 		cursor: pointer;
 
