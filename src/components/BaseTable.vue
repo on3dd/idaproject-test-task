@@ -40,12 +40,16 @@
 </style>
 
 <style lang="scss">
+	@import '@/scss/_unselectable.scss';
+
 	.table-row {
 		position: relative;
 		display: flex;
 	}
 
 	.table-col {
+		@include unselectable;
+
 		position: relative;
 		display: flex;
 		margin-right: 2rem;

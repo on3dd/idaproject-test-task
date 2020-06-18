@@ -1,9 +1,5 @@
 <template>
   <div class="select-wrapper">
-    <span class="select__text" v-if="label">
-      {{label}}
-      <slot name="hint" />
-    </span>
     <div class="select">
       <div @click="handleCurrentClick" ref="current" class="select__current">
         {{value}}
@@ -35,8 +31,6 @@
 		};
 
 		@Prop({ type: Array, required: false, default: () => [] }) options!: string[];
-		@Prop({ type: Boolean, required: false, default: false }) empty!: boolean;
-		@Prop({ type: String, required: false }) label!: string;
 
 		@Model('select', { type: String || Number }) modelValue!: string | number;
 
@@ -49,14 +43,8 @@
 			this.value = val;
 		}
 
-		// get otherOptions(): string[] {
-		// 	return this.options.filter(el => el !== this.value);
-		// }
-
 		created() {
-			if (this.empty) {
-				this.value = '';
-			} else if (this.modelValue) {
+			if (this.modelValue) {
 				this.value = this.modelValue;
 			} else if (this.options.length !== 0) {
 				this.value = this.options[0];
@@ -92,8 +80,11 @@
 
 <style scoped lang="scss">
 	@import '@/scss/colors.scss';
+	@import '@/scss/_unselectable.scss';
 
 	.select {
+		@include unselectable;
+
 		position: relative;
 		// width: inherit;
 		width: 100%;

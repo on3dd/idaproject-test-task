@@ -2,14 +2,22 @@
   <div class="sorting-options">
     <span class="sorting-options__mode">Sorting by:</span>
     <ul class="sorting-options__list">
-      <li class="sorting-options__item" v-for="(item, idx) in sortingOptions" :key="idx">{{item}}</li>
+      <li class="sorting-options__item" v-for="(item, idx) in sortingOptions" :key="idx">
+        <BaseButton :flat="idx !== 0" color="green">{{item}}</BaseButton>
+      </li>
     </ul>
   </div>
 </template>
 
 <script lang="ts">
 	import { Component, Vue } from 'vue-property-decorator';
+	import BaseButton from './BaseButton.vue';
 
+	@Component({
+		components: {
+			BaseButton,
+		},
+	})
 	export default class BaseTableControlsSorting extends Vue {
 		private readonly sortingOptions = [
 			'Product (100g serving)',
@@ -23,10 +31,12 @@
 </script>
 
 <style scoped lang="scss">
+	@import '@/scss/colors.scss';
 	@import '@/scss/_unselectable.scss';
 
 	.sorting-options {
 		display: flex;
+		align-items: center;
 		margin: 20px 0;
 	}
 
@@ -36,13 +46,15 @@
 
 	.sorting-options__list {
 		display: flex;
+		align-items: center;
 		margin: 0;
 		padding: 0;
 	}
 
 	.sorting-options__item {
-    @include unselectable;
+		@include unselectable;
 
+		// color: $black;
 		list-style: none;
 		cursor: pointer;
 

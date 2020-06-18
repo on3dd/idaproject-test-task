@@ -1,7 +1,7 @@
 <template>
   <div class="table__controls">
     <BaseTableControlsSorting class="table__control" />
-    <BaseButton :disabled="true" class="table__control">Delete</BaseButton>
+    <BaseButton :disabled="true" color="green" class="table__control">Delete</BaseButton>
     <BaseSelect :options="['10 Per Page', '15 Per Page', '20 Per Page']" class="table__control" />
     <BaseTableControlsPagination class="table__control" />
     <BaseSelect :options="['6 columns selected']" class="table__control" />
