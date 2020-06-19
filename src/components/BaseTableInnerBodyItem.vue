@@ -7,6 +7,7 @@
       <div v-for="(item, idx) in values" :key="idx" class="table-col">
         <span class="table-col__value">{{item}}</span>
       </div>
+      <BaseButtonWithIcon :flat="true" color="gray" icon="trash">delete</BaseButtonWithIcon>
     </div>
   </div>
 </template>
@@ -14,10 +15,12 @@
 <script lang="ts">
 	import { Component, Vue, Prop } from 'vue-property-decorator';
 	import BaseCheckbox from './BaseCheckbox.vue';
+	import BaseButtonWithIcon from './BaseButtonWithIcon.vue';
 
 	@Component({
 		components: {
 			BaseCheckbox,
+			BaseButtonWithIcon,
 		},
 	})
 	export default class BaseTableInnerBodyItem extends Vue {
@@ -39,8 +42,8 @@
 	// @import '@/scss/colors.scss';
 
 	.table-item {
-    padding: 13px 37px;
-    cursor: pointer;
+		padding: 13px 37px;
+		cursor: pointer;
 		// transition: all 0.1s ease-out;
 
 		&.odd {
@@ -56,6 +59,18 @@
 
 			&:hover {
 				background-color: darken(#f8f9fa, 5%);
+			}
+		}
+
+		.button {
+			position: absolute;
+			right: 20px;
+			display: none;
+		}
+
+		&:hover {
+			.button {
+				display: inline-flex;
 			}
 		}
 	}

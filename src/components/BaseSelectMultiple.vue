@@ -22,7 +22,7 @@
 </template>
 
 <script lang="ts">
-	import { Component, Vue, Prop, Model } from 'vue-property-decorator';
+	import { Component, Model } from 'vue-property-decorator';
 	import BaseCheckbox from './BaseCheckbox.vue';
 	import Select from '@/mixins/select';
 

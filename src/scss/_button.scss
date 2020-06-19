@@ -33,6 +33,10 @@
     }
   }
 
+  &.gray {
+    color: $gray !important;
+  }
+
   &.flat {
     padding: 0;
     color: inherit;

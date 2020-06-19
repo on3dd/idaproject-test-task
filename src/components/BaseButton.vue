@@ -13,7 +13,6 @@
 </script>
 
 <style scoped lang="scss">
-	@import '@/scss/colors.scss';
 	@import '@/scss/_button.scss';
 
 	.button {

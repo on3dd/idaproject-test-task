@@ -9,10 +9,13 @@
 
 <script lang="ts">
 	import { Component, Vue, Prop } from 'vue-property-decorator';
+	import { Action } from 'vuex-class';
 	import BaseDivider from './BaseDivider.vue';
 	import BaseTableControls from './BaseTableControls.vue';
 	import BaseTableInner from './BaseTableInner.vue';
+	import { Product } from '@/@types/product';
 
+	// eslint-disable-next-line
 	type TABLE_TYPE = any;
 
 	@Component({
@@ -24,6 +27,12 @@
 	})
 	export default class BaseTable extends Vue {
 		@Prop({ type: Object, required: true }) options!: TABLE_TYPE;
+
+		@Action fetchProducts!: () => void;
+
+		async mounted() {
+			await this.fetchProducts();
+		}
 	}
 </script>
 
@@ -40,16 +49,13 @@
 </style>
 
 <style lang="scss">
-	@import '@/scss/_unselectable.scss';
-
 	.table-row {
 		position: relative;
 		display: flex;
+		align-items: center;
 	}
 
 	.table-col {
-		// @include unselectable;
-
 		position: relative;
 		display: flex;
 		margin-right: 2rem;
