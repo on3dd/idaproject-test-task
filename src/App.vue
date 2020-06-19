@@ -18,6 +18,14 @@
 	export default class App extends Vue {
 		private readonly options = {
 			header: 'Table UI',
+			columns: [
+				'Product (100g serving)',
+				'Calories',
+				'Fat (g)',
+				'Carbs (g)',
+				'Protein (g)',
+				'Iron (%)',
+			],
 		};
 	}
 </script>

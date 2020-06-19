@@ -22,20 +22,14 @@
 </template>
 
 <script lang="ts">
-	import { Component, Vue, Prop, Model, Watch } from 'vue-property-decorator';
+	import { Component, Model, Watch } from 'vue-property-decorator';
+	import Select from '@/mixins/select';
 
 	@Component
-	export default class BaseSelect extends Vue {
-		$refs!: {
-			current: HTMLDivElement;
-		};
-
-		@Prop({ type: Array, required: false, default: () => [] }) options!: string[];
-
+	export default class BaseSelect extends Select {
 		@Model('select', { type: String || Number }) modelValue!: string | number;
 
 		private value: string | number = '';
-		private isActive = false;
 
 		@Watch('modelValue')
 		onModelValueChanged(val: string | number, oldVal: string | number) {
@@ -59,103 +53,17 @@
 			});
 		}
 
-		handleCurrentClick() {
-			this.$refs.current.classList.toggle('active');
-			this.isActive = !this.isActive;
-		}
-
 		changeCurrent(el: string | number) {
 			this.value = el;
 			this.$emit('select', this.value);
-		}
-
-		get listClasses() {
-			return {
-				select__items: true,
-				active: this.isActive,
-			};
 		}
 	}
 </script>
 
 <style scoped lang="scss">
-	@import '@/scss/colors.scss';
-	@import '@/scss/_unselectable.scss';
+	@import '@/scss/_select.scss';
 
 	.select {
-		@include unselectable;
-
-		position: relative;
-		// width: inherit;
-		width: 100%;
-		// height: inherit;
-		cursor: pointer;
-	}
-
-	.select__text {
-		display: flex;
-		align-items: center;
-		color: #333;
-		font-weight: 500;
-		margin-bottom: 1rem;
-	}
-
-	.select__current {
-		position: relative;
-		padding: 3px 27px 3px 16px;
-		line-height: 24px;
-		vertical-align: top;
-		border: 1px solid $gray-lighten;
-		border-radius: 2px;
-
-		&:hover {
-			background-color: rgba(0, 0, 0, 2.5%);
-		}
-	}
-
-	.select__current__icon {
-		position: absolute;
-		top: 50%;
-		right: 13px;
-		width: 8px;
-		height: 5px;
-		transform: translateY(-50%);
-	}
-
-	.select__items {
-		position: absolute;
-		top: 40px;
-		left: 0;
-		display: none;
-		width: 100%;
-		z-index: 100;
-		max-height: 200px;
-		overflow: auto;
-
-		background: #ffffff;
-		box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.16);
-		border-radius: 4px;
-
-		&.active {
-			display: block;
-		}
-	}
-
-	.select__item {
-		// height: 40px;
-		// width: inherit;
-		padding: 3px 27px 3px 16px;
-		line-height: 24px;
-		background-color: #ffffff;
-		border-radius: 0;
-		border-top: none;
-
-		&:last-child {
-			border-radius: 0 0 5px 5px;
-		}
-
-		&:hover {
-			background-color: darken(#ffffff, 2.5%);
-		}
+		@include select;
 	}
 </style>

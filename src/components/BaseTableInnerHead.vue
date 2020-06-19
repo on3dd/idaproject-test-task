@@ -12,7 +12,7 @@
 </template>
 
 <script lang="ts">
-	import { Component, Vue } from 'vue-property-decorator';
+	import { Component, Vue, Prop } from 'vue-property-decorator';
 	import BaseCheckbox from './BaseCheckbox.vue';
 
 	@Component({
@@ -21,16 +21,9 @@
 		},
 	})
 	export default class BaseTableInnerHead extends Vue {
-		private checked = false;
+		@Prop({ type: Array, required: false, default: () => [] }) columns!: string[];
 
-		private readonly columns = [
-			'Product (100g serving)',
-			'Calories',
-			'Fat (g)',
-			'Carbs (g)',
-			'Protein (g)',
-			'Iron (%)',
-		];
+		private checked = false;
 	}
 </script>
 

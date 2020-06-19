@@ -1,13 +1,13 @@
 <template>
   <div class="table-inner">
-    <BaseTableInnerHead />
+    <BaseTableInnerHead :columns="columns" />
     <BaseDivider />
     <BaseTableInnerBody />
   </div>
 </template>
 
 <script lang="ts">
-	import { Component, Vue } from 'vue-property-decorator';
+	import { Component, Vue, Prop } from 'vue-property-decorator';
 	import BaseTableInnerHead from './BaseTableInnerHead.vue';
 	import BaseTableInnerBody from './BaseTableInnerBody.vue';
 	import BaseDivider from './BaseDivider.vue';
@@ -19,7 +19,9 @@
 			BaseDivider,
 		},
 	})
-	export default class BaseTableInner extends Vue {}
+	export default class BaseTableInner extends Vue {
+		@Prop({ type: Array, required: false, default: () => [] }) columns!: string[];
+	}
 </script>
 
 <style scoped lang="scss">

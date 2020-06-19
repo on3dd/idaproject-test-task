@@ -1,6 +1,9 @@
 @import './colors.scss';
+@import './unselectable';
 
 @mixin button {
+  @include unselectable;
+
   padding: 3px 16px;
   color: $gray;
   font-size: 14px;

@@ -2,7 +2,7 @@
   <div class="sorting-options">
     <span class="sorting-options__mode">Sorting by:</span>
     <ul class="sorting-options__list">
-      <li class="sorting-options__item" v-for="(item, idx) in sortingOptions" :key="idx">
+      <li class="sorting-options__item" v-for="(item, idx) in columns" :key="idx">
         <BaseButton :flat="idx !== 0" color="green">{{item}}</BaseButton>
       </li>
     </ul>
@@ -10,7 +10,7 @@
 </template>
 
 <script lang="ts">
-	import { Component, Vue } from 'vue-property-decorator';
+	import { Component, Vue, Prop } from 'vue-property-decorator';
 	import BaseButton from './BaseButton.vue';
 
 	@Component({
@@ -19,14 +19,7 @@
 		},
 	})
 	export default class BaseTableControlsSorting extends Vue {
-		private readonly sortingOptions = [
-			'Product (100g serving)',
-			'Calories',
-			'Fat (g)',
-			'Carbs (g)',
-			'Protein (g)',
-			'Iron (%)',
-		];
+		@Prop({ type: Array, required: false, default: () => [] }) columns!: string[];
 	}
 </script>
 

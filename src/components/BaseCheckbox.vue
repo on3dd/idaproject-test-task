@@ -1,16 +1,18 @@
 <template>
   <label class="checkbox-wrapper">
-    <input type="checkbox" class="checkbox" :value="checked" />
+    <input type="checkbox" class="checkbox" :checked="checked" />
     <span class="checkmark" />
+    <span v-if="label" class="text">{{label}}</span>
   </label>
 </template>
 
 <script lang="ts">
-	import { Component, Vue, Model } from 'vue-property-decorator';
+	import { Component, Vue, Model, Prop } from 'vue-property-decorator';
 
 	@Component
 	export default class BaseCheckbox extends Vue {
 		@Model('input', { type: Boolean }) checked!: boolean;
+		@Prop({ type: String, required: false, default: '' }) label!: string;
 	}
 </script>
 
@@ -18,11 +20,12 @@
 	@import '@/scss/colors.scss';
 
 	.checkbox-wrapper {
-		display: inline-block;
+		display: inline-flex;
+		align-items: center;
 		position: relative;
 		cursor: pointer;
-		height: 14px;
-		width: 14px;
+		// height: 14px;
+		// width: 14px;
 	}
 
 	.checkbox {
@@ -34,11 +37,12 @@
 
 	.checkmark {
 		display: block;
-		position: absolute;
-		top: 0;
-		left: 0;
-		height: inherit;
-		width: inherit;
+		position: relative;
+		// position: absolute;
+		// top: 0;
+		// left: 0;
+		height: 14px;
+		width: 14px;
 		background-color: #ffffff;
 		border: 2px solid $cloud-darken;
 		border-radius: 2px;
@@ -51,8 +55,8 @@
 
 	/* When the checkbox is checked, add a blue background */
 	.checkbox:checked ~ .checkmark {
-    background-color: $green;
-    border-color: $green;
+		background-color: $green;
+		border-color: $green;
 	}
 
 	/* Create the checkmark/indicator (hidden when not checked) */
@@ -69,6 +73,7 @@
 
 	/* Style the checkmark/indicator */
 	.checkmark:after {
+		position: absolute;
 		left: 2px;
 		top: 0px;
 		width: 4px;
@@ -78,5 +83,10 @@
 		-webkit-transform: rotate(45deg);
 		-ms-transform: rotate(45deg);
 		transform: rotate(45deg);
+	}
+
+	.text {
+		margin-left: 13px;
+		line-height: 24px;
 	}
 </style>

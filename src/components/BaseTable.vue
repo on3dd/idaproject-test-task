@@ -2,8 +2,8 @@
   <div class="table">
     <h1 class="table__header">{{options.header}}</h1>
     <BaseDivider />
-    <BaseTableControls />
-    <BaseTableInner />
+    <BaseTableControls :columns="options.columns" />
+    <BaseTableInner :columns="options.columns" />
   </div>
 </template>
 
@@ -48,7 +48,7 @@
 	}
 
 	.table-col {
-		@include unselectable;
+		// @include unselectable;
 
 		position: relative;
 		display: flex;
